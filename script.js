@@ -22,6 +22,53 @@ catch(error)
 console.log(error) 
 
 }
+===================================================================================================
+  
+  const express = require('express');
+const app = express();
+const PORT = process.env.PORT || 4003
+
+let stud = [
+    {
+        name:"Arul",
+        email:"arul@gmail.com",
+        mobile:"97488542434"
+    },
+    {
+        name:"Sidvik",
+        email:"sidvik@gmail.com",
+        mobile:"9748589233"
+    },
+]
+
+
+app.get('/',(req,res)=>{
+    res.send({
+        statusCode: 200,
+        data:stud
+    });
+})
+
+app.get('/:id',(req,res)=>{
+    if(req.params.id<stud.length)
+    {
+    res.send({
+        statusCode: 200,
+        data:stud[req.params.id]
+    });
+}
+else
+{
+    res.send({
+        statusCode: 400,
+        message:"Invalid id"
+    });
+}
+})
+
+
+
+app.listen(PORT,()=>console.log(PORT))
 
 ===================================================================================================
   
